@@ -84,7 +84,7 @@ public class CheckoutActivity extends AppCompatActivity {
   private void startGooglePayActivity() {
     TransactionInfo transactionInfo = TransactionInfo.newBuilder()
         .setTotalPriceStatus(WalletConstants.TOTAL_PRICE_STATUS_FINAL)
-        .setTotalPrice("1.00")
+        .setTotalPrice("5.00")
         .setCurrencyCode("USD")
         .build();
 
