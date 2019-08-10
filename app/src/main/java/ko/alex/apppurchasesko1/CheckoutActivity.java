@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.wallet.AutoResolveHelper;
@@ -60,6 +61,7 @@ public class CheckoutActivity extends AppCompatActivity {
       if (InAppPaymentsSdk.INSTANCE.getSquareApplicationId().equals("REPLACE_ME")) {
         showMissingSquareApplicationIdDialog();
       } else {
+        Toast.makeText(this, "Buy button pressed, showOrderSheet() method", Toast.LENGTH_SHORT).show(); //getActivity() for fragments
         showOrderSheet();
       }
     });
@@ -78,6 +80,7 @@ public class CheckoutActivity extends AppCompatActivity {
   }
 
   private void startCardEntryActivity() {
+    Toast.makeText(this, "startCardEntryActivity method activated", Toast.LENGTH_SHORT).show(); //getActivity() for fragments
     CardEntry.startCardEntryActivity(this);
   }
 
@@ -106,6 +109,8 @@ public class CheckoutActivity extends AppCompatActivity {
   }
 
   private void showOrderSheet() {
+    //TODO figure out where showOrderSheet() is going
+    Toast.makeText(this, "showOrderSheet() #1", Toast.LENGTH_SHORT).show(); //getActivity() for fragments
     orderSheet.show(CheckoutActivity.this);
   }
 

@@ -32,7 +32,7 @@ public class ConfigHelper {
             + "--data \'{\n"
             + "\"idempotency_key\": \"" + uuid + "\",\n"
             + "\"amount_money\": {\n"
-            + "\"amount\": 100,\n"
+            + "\"amount\": 500,\n"
             + "\"currency\": \"USD\"},\n"
             + "\"card_nonce\": \"" + nonce + "\""
             + "}\'");
