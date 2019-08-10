@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 public class OrderSheet {
 
@@ -37,10 +39,11 @@ public class OrderSheet {
     View sheetView = LayoutInflater.from(activity).inflate(R.layout.sheet_order, null);
 
     View closeButton = sheetView.findViewById(R.id.close_sheet_button);
-    View payWithCardButton = sheetView.findViewById(R.id.pay_with_card_button);
+    View payWithCardButton = sheetView.findViewById(R.id.pay_with_card_button); //TODO: this is where the payWithCardButton is
     payWithCardButton.setOnClickListener(v -> {
       dialog.dismiss();
       showing = false;
+      Log.i("ASDF", "asdfasdf"); //TODO: ASDF
       onPayWithCardClickListener.run();
     });
 
