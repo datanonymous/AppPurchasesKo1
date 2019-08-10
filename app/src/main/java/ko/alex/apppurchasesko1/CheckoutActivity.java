@@ -31,7 +31,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
   private final Handler handler = new Handler(Looper.getMainLooper());
 
-  private GooglePayChargeClient googlePayChargeClient;
+//  private GooglePayChargeClient googlePayChargeClient;
   private PaymentsClient paymentsClient;
   private OrderSheet orderSheet;
 
@@ -40,15 +40,15 @@ public class CheckoutActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_cookie);
 
-    googlePayChargeClient = (GooglePayChargeClient) getLastCustomNonConfigurationInstance();
-    if (googlePayChargeClient == null) {
-      googlePayChargeClient = ExampleApplication.createGooglePayChargeClient(this);
-    }
-    googlePayChargeClient.onActivityCreated(this);
+//    googlePayChargeClient = (GooglePayChargeClient) getLastCustomNonConfigurationInstance();
+//    if (googlePayChargeClient == null) {
+//      googlePayChargeClient = ExampleApplication.createGooglePayChargeClient(this);
+//    }
+//    googlePayChargeClient.onActivityCreated(this);
 
     paymentsClient = Wallet.getPaymentsClient(this,
         new Wallet.WalletOptions.Builder()
-            .setEnvironment(WalletConstants.ENVIRONMENT_TEST)
+            .setEnvironment(WalletConstants.ENVIRONMENT_TEST) //ENVIRONMENT_TEST
             .build());
 
     orderSheet = new OrderSheet();
@@ -75,10 +75,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
   }
 
-  @Override
-  public GooglePayChargeClient onRetainCustomNonConfigurationInstance() {
-    return googlePayChargeClient;
-  }
+//  @Override
+//  public GooglePayChargeClient onRetainCustomNonConfigurationInstance() {
+//    return googlePayChargeClient;
+//  }
 
   private void enableGooglePayButton(OrderSheet orderSheet) {
     Task<Boolean> readyToPayTask =
@@ -139,36 +139,36 @@ public class CheckoutActivity extends AppCompatActivity {
       }
     });
 
-    if (requestCode == LOAD_PAYMENT_DATA_REQUEST_CODE) {
-      handleGooglePayActivityResult(resultCode, data);
-    }
+//    if (requestCode == LOAD_PAYMENT_DATA_REQUEST_CODE) {
+//      handleGooglePayActivityResult(resultCode, data);
+//    }
   }
 
-  private void handleGooglePayActivityResult(int resultCode, Intent data) {
-    if (resultCode == RESULT_OK) {
-      if (!ConfigHelper.squareLocationIdSet()) {
-        showSquareLocationIdNotSet();
-        return;
-      }
-      PaymentData paymentData = PaymentData.getFromIntent(data);
-      if (paymentData != null && paymentData.getPaymentMethodToken() != null) {
-        String googlePayToken = paymentData.getPaymentMethodToken().getToken();
-        googlePayChargeClient.charge(googlePayToken);
-      }
-    } else {
-      // The customer canceled Google Pay or an error happened, show the order sheet again.
-      showOrderSheet();
-    }
-  }
+//  private void handleGooglePayActivityResult(int resultCode, Intent data) {
+//    if (resultCode == RESULT_OK) {
+//      if (!ConfigHelper.squareLocationIdSet()) {
+//        showSquareLocationIdNotSet();
+//        return;
+//      }
+//      PaymentData paymentData = PaymentData.getFromIntent(data);
+//      if (paymentData != null && paymentData.getPaymentMethodToken() != null) {
+//        String googlePayToken = paymentData.getPaymentMethodToken().getToken();
+//        googlePayChargeClient.charge(googlePayToken);
+//      }
+//    } else {
+//      // The customer canceled Google Pay or an error happened, show the order sheet again.
+//      showOrderSheet();
+//    }
+//  }
 
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-    if (!isChangingConfigurations()) {
-      googlePayChargeClient.cancel();
-    }
-    googlePayChargeClient.onActivityDestroyed();
-  }
+//  @Override
+//  protected void onDestroy() {
+//    super.onDestroy();
+//    if (!isChangingConfigurations()) {
+//      googlePayChargeClient.cancel();
+//    }
+//    googlePayChargeClient.onActivityDestroyed();
+//  }
 
   public void showError(String message) {
     showOkDialog(R.string.unsuccessful_order, message);
