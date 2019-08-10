@@ -46,10 +46,10 @@ public class CheckoutActivity extends AppCompatActivity {
 //    }
 //    googlePayChargeClient.onActivityCreated(this);
 
-    paymentsClient = Wallet.getPaymentsClient(this,
-        new Wallet.WalletOptions.Builder()
-            .setEnvironment(WalletConstants.ENVIRONMENT_TEST) //ENVIRONMENT_TEST
-            .build());
+//    paymentsClient = Wallet.getPaymentsClient(this,
+//        new Wallet.WalletOptions.Builder()
+//            .setEnvironment(WalletConstants.ENVIRONMENT_TEST) //ENVIRONMENT_TEST
+//            .build());
 
     orderSheet = new OrderSheet();
 
@@ -80,12 +80,12 @@ public class CheckoutActivity extends AppCompatActivity {
 //    return googlePayChargeClient;
 //  }
 
-  private void enableGooglePayButton(OrderSheet orderSheet) {
-    Task<Boolean> readyToPayTask =
-        paymentsClient.isReadyToPay(GooglePay.createIsReadyToPayRequest());
-    readyToPayTask.addOnCompleteListener(this,
-        (task) -> orderSheet.setPayWithGoogleEnabled(task.isSuccessful()));
-  }
+//  private void enableGooglePayButton(OrderSheet orderSheet) {
+//    Task<Boolean> readyToPayTask =
+//        paymentsClient.isReadyToPay(GooglePay.createIsReadyToPayRequest());
+//    readyToPayTask.addOnCompleteListener(this,
+//        (task) -> orderSheet.setPayWithGoogleEnabled(task.isSuccessful()));
+//  }
 
   private void startCardEntryActivity() {
     Toast.makeText(this, "startCardEntryActivity method activated", Toast.LENGTH_SHORT).show(); //getActivity() for fragments

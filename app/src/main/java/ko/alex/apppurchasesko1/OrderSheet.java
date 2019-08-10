@@ -13,25 +13,26 @@ public class OrderSheet {
 
   private static final String SHOWING_KEY = "showing";
   private Runnable onPayWithCardClickListener;
-  private Runnable onPayWithGoogleClickListener;
-  private View payWithGoogleButton;
-  private boolean payWithGoogleButtonEnabled;
+//  private Runnable onPayWithGoogleClickListener;
+//  private View payWithGoogleButton;
+//  private boolean payWithGoogleButtonEnabled;
   private boolean showing;
 
   public void setOnPayWithCardClickListener(Runnable listener) {
+    Log.i("asdf", "setOnPayWithCardClickListener method with Runnable listener"); //TODO: DEAD END
     onPayWithCardClickListener = listener;
   }
 
-  public void setOnPayWithGoogleClickListener(Runnable listener) {
-    onPayWithGoogleClickListener = listener;
-  }
+//  public void setOnPayWithGoogleClickListener(Runnable listener) {
+//    onPayWithGoogleClickListener = listener;
+//  }
 
-  public void setPayWithGoogleEnabled(boolean enabled) {
-    payWithGoogleButtonEnabled = enabled;
-    if (payWithGoogleButton != null) {
-      payWithGoogleButton.setEnabled(enabled);
-    }
-  }
+//  public void setPayWithGoogleEnabled(boolean enabled) {
+//    payWithGoogleButtonEnabled = enabled;
+//    if (payWithGoogleButton != null) {
+//      payWithGoogleButton.setEnabled(enabled);
+//    }
+//  }
 
   public void show(Activity activity) {
     showing = true;
@@ -43,17 +44,17 @@ public class OrderSheet {
     payWithCardButton.setOnClickListener(v -> {
       dialog.dismiss();
       showing = false;
-      Log.i("ASDF", "asdfasdf"); //TODO: ASDF
+      Log.i("asdf", ".show() before onPayWithCardClickListener.run()"); //TODO
       onPayWithCardClickListener.run();
     });
 
-    payWithGoogleButton = sheetView.findViewById(R.id.pay_with_google_button);
-    payWithGoogleButton.setEnabled(payWithGoogleButtonEnabled);
-    payWithGoogleButton.setOnClickListener(v -> {
-      dialog.dismiss();
-      showing = false;
-      onPayWithGoogleClickListener.run();
-    });
+//    payWithGoogleButton = sheetView.findViewById(R.id.pay_with_google_button);
+//    payWithGoogleButton.setEnabled(payWithGoogleButtonEnabled);
+//    payWithGoogleButton.setOnClickListener(v -> {
+//      dialog.dismiss();
+//      showing = false;
+//      onPayWithGoogleClickListener.run();
+//    });
 
     closeButton.setOnClickListener(v -> dialog.dismiss());
 
