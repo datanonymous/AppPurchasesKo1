@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
@@ -52,9 +53,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
     orderSheet = new OrderSheet();
 
-    enableGooglePayButton(orderSheet);
+    //enableGooglePayButton(orderSheet);
     orderSheet.setOnPayWithCardClickListener(this::startCardEntryActivity);
-    orderSheet.setOnPayWithGoogleClickListener(this::startGooglePayActivity);
+
+    //TODO: does deleting this make a difference?
+//    orderSheet.setOnPayWithGoogleClickListener(this::startGooglePayActivity);
 
     View buyButton = findViewById(R.id.buy_button);
     buyButton.setOnClickListener(v -> {
@@ -65,6 +68,11 @@ public class CheckoutActivity extends AppCompatActivity {
         showOrderSheet();
       }
     });
+
+    //TODO: created second generic button, still works
+    Button button = findViewById(R.id.button);
+    button.setOnClickListener(v -> showOrderSheet()); //Lambda
+
   }
 
   @Override
@@ -84,21 +92,22 @@ public class CheckoutActivity extends AppCompatActivity {
     CardEntry.startCardEntryActivity(this);
   }
 
-  private void startGooglePayActivity() {
-    TransactionInfo transactionInfo = TransactionInfo.newBuilder()
-        .setTotalPriceStatus(WalletConstants.TOTAL_PRICE_STATUS_FINAL)
-        .setTotalPrice("5.00")
-        .setCurrencyCode("USD")
-        .build();
-
-    PaymentDataRequest paymentDataRequest =
-        GooglePay.createPaymentDataRequest(ConfigHelper.SQUARE_LOCATION_ID_FOR_GOOGLE_PAY,
-            transactionInfo);
-
-    Task<PaymentData> googlePayActivityTask = paymentsClient.loadPaymentData(paymentDataRequest);
-
-    AutoResolveHelper.resolveTask(googlePayActivityTask, this, LOAD_PAYMENT_DATA_REQUEST_CODE);
-  }
+  //TODO: Does deleting this make a difference?
+//  private void startGooglePayActivity() {
+//    TransactionInfo transactionInfo = TransactionInfo.newBuilder()
+//        .setTotalPriceStatus(WalletConstants.TOTAL_PRICE_STATUS_FINAL)
+//        .setTotalPrice("5.00")
+//        .setCurrencyCode("USD")
+//        .build();
+//
+//    PaymentDataRequest paymentDataRequest =
+//        GooglePay.createPaymentDataRequest(ConfigHelper.SQUARE_LOCATION_ID_FOR_GOOGLE_PAY,
+//            transactionInfo);
+//
+//    Task<PaymentData> googlePayActivityTask = paymentsClient.loadPaymentData(paymentDataRequest);
+//
+//    AutoResolveHelper.resolveTask(googlePayActivityTask, this, LOAD_PAYMENT_DATA_REQUEST_CODE);
+//  }
 
   private void showMissingSquareApplicationIdDialog() {
     new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert)
@@ -110,7 +119,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
   private void showOrderSheet() {
     //TODO figure out where showOrderSheet() is going
-    Toast.makeText(this, "showOrderSheet() #1", Toast.LENGTH_SHORT).show(); //getActivity() for fragments
+    //Toast.makeText(this, "showOrderSheet() #1", Toast.LENGTH_SHORT).show(); //getActivity() for fragments
     orderSheet.show(CheckoutActivity.this);
   }
 
