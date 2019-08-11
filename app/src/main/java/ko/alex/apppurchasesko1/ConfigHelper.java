@@ -23,19 +23,19 @@ public class ConfigHelper {
 
   public static void printCurlCommand(String nonce) {
     String uuid = UUID.randomUUID().toString();
-    Log.d("ExampleApplication",
-        "Run this curl command to charge the nonce:\n"
-            + "curl --request POST https://connect.squareup.com/v2/locations/SQUARE_LOCATION_ID_FOR_GOOGLE_PAY/transactions \\\n"
-            + "--header \"Content-Type: application/json\" \\\n"
-            + "--header \"Authorization: Bearer YOUR_ACCESS_TOKEN\" \\\n"
-            + "--header \"Accept: application/json\" \\\n"
-            + "--data \'{\n"
-            + "\"idempotency_key\": \"" + uuid + "\",\n"
-            + "\"amount_money\": {\n"
-            + "\"amount\": 500,\n"
-            + "\"currency\": \"USD\"},\n"
-            + "\"card_nonce\": \"" + nonce + "\""
-            + "}\'");
+//    Log.d("ExampleApplication",
+//        "Run this curl command to charge the nonce:\n"
+//            + "curl --request POST https://connect.squareup.com/v2/locations/SQUARE_LOCATION_ID_FOR_GOOGLE_PAY/transactions \\\n"
+//            + "--header \"Content-Type: application/json\" \\\n"
+//            + "--header \"Authorization: Bearer YOUR_ACCESS_TOKEN\" \\\n"
+//            + "--header \"Accept: application/json\" \\\n"
+//            + "--data \'{\n"
+//            + "\"idempotency_key\": \"" + uuid + "\",\n"
+//            + "\"amount_money\": {\n"
+//            + "\"amount\": 500,\n"
+//            + "\"currency\": \"USD\"},\n"
+//            + "\"card_nonce\": \"" + nonce + "\""
+//            + "}\'");
   }
 
   public static Retrofit createRetrofitInstance() {
